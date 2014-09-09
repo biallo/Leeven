@@ -1,0 +1,43 @@
+<section class="page-login">
+    <div class="ui icon blue message">
+        <i class="icon {{joke.icon}}"></i>
+        <div class="content">
+            <div class="header">Leeven</div>
+            <p>{{joke.text}}</p>
+        </div>
+    </div>
+    <div class="ui horizontal divider">登录</div>
+    <form class="ui form segment">
+        <div class="field">
+            <label>邮箱</label>
+            <div class="ui left labeled icon input">
+                <input type="text" name="email" placeholder="Email" autofocus>
+                <i class="mail icon"></i>
+                <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>密码</label>
+            <div class="ui left labeled icon input">
+                <input type="password" name="password" placeholder="Password">
+                <i class="lock icon"></i>
+                <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui medium buttons">
+            <div class="ui button submit blue animated">
+                <div class="visible content">登录</div>
+                <div class="hidden content">
+                    <i class="icon unlock"></i>
+                </div>
+            </div>
+            <div class="or"></div>
+            <a class="ui button" href="/signup">注册</a>
+        </div>
+        <div class="ui error message"></div>
+    </form>
+</section>

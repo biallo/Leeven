@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<title>Leeven</title>
+		{{#if isproduction}}
+	    <link rel='stylesheet' href='/stylesheets/style.min.css' />
+	    {{else}}
+	    <link rel='stylesheet' href='/stylesheets/style.css' />
+	    {{/if}}
+	</head>
+	<body class="login-layout">
+		{{{body}}}
+
+		<div class="ui modal small tip-modal">
+			<div class="header"></div>
+    		<div class="content"></div>
+	    </div>
+		{{!-- /.tip-modal --}}
+
+		{{#if isproduction}}
+	    <script src="/javascripts/script.min.js"></script>
+	    {{else}}
+	    <script src="/libs/jquery/jquery-1.11.1.js"></script>
+	    <script src="/libs/semantic/javascript/semantic.js"></script>
+	    <script src="/libs/nprogress/nprogress.js"></script>
+	    <script src="/javascripts/sub/base.js"></script>
+	    <script src="/javascripts/sub/login.js"></script>
+	    <script src="/javascripts/sub/signup.js"></script>
+	    {{/if}}
+	</body>
+</html>
