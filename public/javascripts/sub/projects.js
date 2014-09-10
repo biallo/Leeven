@@ -5,7 +5,7 @@
         $('#btnAddProject').on('click', function() {
 
         	$('.sidebar-project .header').text('新增项目');
-        	$('#formProject').data('action', 'add');
+        	$('#formProject').data('action', 'create');
 
             $('.sidebar-project')
                 .sidebar({
@@ -29,20 +29,39 @@
 
         $('#formProject').form(validationRules, {
             onSuccess: function() {
-                submitForm();
+                submitProject();
                 return false;
             },
             onFailure: function() {
-                $('.ui.form').transition('shake');
                 return false;
             }
         });
 
         /**
          * 提交form
+         * form action = create || update
          */
         function submitProject() {
-        	
+        	$.myAjax({
+                url: '/projects/'+ $('#formProject').data('groupid') + '/' + $('#formProject').data('action'),
+                data: $('#formProject').serialize(),
+                beforeSend: function() {
+                    $('#btnAddProject').addClass('loading');
+                },
+                success: function(data) {
+                    if (data.status) { //成功
+                        window.location.reload();
+                    } else { //失败
+                        $('.msg-project-form').html($.errMsg(data.result)).show();
+                    }
+                },
+                error: function() {
+                    $('.msg-project-form').text('提交失败，请稍后重试').show();
+                },
+                complete: function() {
+                    $('#btnAddProject').removeClass('loading');
+                }
+            });
         }
 
 

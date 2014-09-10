@@ -8,15 +8,8 @@ DaoBase = (function() {
         return {
             create: function(doc, callback) {
                 Model.create(doc, function(error) {
-                    console.log(error);
                     if (error) return callback(error);
                     return callback(null, doc);
-                });
-            },
-            save: function(model, callback) {
-                model.save(function(error) {
-                    if (error) return callback(error);
-                    return callback(null, model);
                 });
             },
             findById: function(id, callback) {
@@ -45,7 +38,7 @@ DaoBase = (function() {
                     return callback(null, model);
                 });
             },
-            delete: function(query, callback) {
+            del: function(query, callback) {
                 Model.remove(query, function(error) {
                     if (error) return callback(error);
                     return callback(null);
@@ -60,16 +53,12 @@ DaoBase = (function() {
                     return callback(null);
                 });
             },
-            list: function(options, sort, callback) {
+            getList: function(options, sort, callback) {
                 var criteria = options.criteria || {};
                 Model.find(criteria)
                     .sort(sort)
                     .limit(options.perPage)
                     .skip(options.perPage * options.page)
-                    .exec(callback);
-            },
-            listAll: function(options, callback) {
-                Model.find(options)
                     .exec(callback);
             }
         }

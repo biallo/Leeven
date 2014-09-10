@@ -7,7 +7,7 @@ var FilelogSchema = new Schema({
         type: String,
         required: true
     },
-    date: {
+    createdTime: {
         type: Date,
         default: Date.now
     },

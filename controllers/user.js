@@ -1,7 +1,6 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose');
 var async = require('async');
 var UserDao = require('./../dao').UserDao;
 
@@ -137,18 +136,6 @@ exports.logout = function(req, res) {
     req.logout();
     delete req.user;
     res.redirect('/');
-};
-
-/**
- * Find user by id
- */
-exports.user = function(req, res, next, id) {
-    User.load(id, function(err, user) {
-        if (err) return next(err);
-        if (!user) return next(new Error('Failed to load User ' + id));
-        req._user = user;
-        next();
-    });
 };
 
 function clearUser(user) {

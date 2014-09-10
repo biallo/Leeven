@@ -10,14 +10,14 @@
 		</div>
 		<div class="ui stacked segment list-holder">
 		  	{{#if projects}}
-				{{#each projects}}
 				<div class="ui stackable items">
-				  	<a href="/project/{{project._id}}" class="item">
-				    	<div class="title">{{project.name}}</div>
-						<div class="description">{{project.description}}</div>
+					{{#each projects}}
+				  	<a href="/project/{{_id}}" class="item">
+				    	<div class="title">{{name}}</div>
+						<div class="description">{{description}}</div>
 				  	</a>
+				  	{{/each}}
 				</div>
-				{{/each}}
 		  	{{else}}
 			<div class="ui message">
 			  	<div class="header">你的团队没有建立任何项目</div>
@@ -30,7 +30,7 @@
 
 	<div class="ui wide styled sidebar sidebar-project">
 	  	<h3 class="ui header"></h3>
-	  	<form id="formProject" class="ui form">
+	  	<form id="formProject" class="ui form" data-groupid="{{user.group_id}}">
 		    <div class="field">
 		      <label>名称</label>
 		      <input type="text" name="name" placeholder="Name">
@@ -40,8 +40,7 @@
 		      <textarea name="description" placeholder="description"></textarea>
 		    </div>
 	    	<div class="ui green fluid button submit">提交</div>
-	    	<input type="hidden" name="pId">
-	    	<div class="ui error message"></div>
+	    	<div class="ui error message msg-project-form"></div>
 	  	</form>
 	</div>
 	{{!-- /.sidebar --}}

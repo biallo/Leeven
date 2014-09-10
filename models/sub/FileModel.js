@@ -17,7 +17,7 @@ var FileSchema = new Schema({
         required: true,
         default: 1
     },
-    date: {
+    createdTime: {
         type: Date,
         default: Date.now
     },
