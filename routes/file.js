@@ -11,6 +11,6 @@ var file = require('./../controllers/file');
  */
 module.exports = function(app, auth) {
 
-  app.get('/file', auth.requiresLogin, file.list);
+  app.get('/file', auth.needToLogin, file.list);
 
 }

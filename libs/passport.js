@@ -6,22 +6,19 @@ var mongoose = require('mongoose'),
     UserDao = require('./../dao').UserDao;
 
 /**
-/**
  * exports `passport`.
  */
 module.exports = function(passport, config) {
     //Serialize sessions
     passport.serializeUser(function(user, done) {
-        done(null, user);
+      done(null, user);
     });
 
+    //Deserialize sessions
     passport.deserializeUser(function(user, done) {
-        User.findById({
-            _id: mongoose.Types.ObjectId(user._id)
-        }, function(err, user) {
-            done(err, user);
-        });
+      UserDao.findById(user._id, function (err, user) {
+        done(err, user);
+      });
     });
-
 
 };

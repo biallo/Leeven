@@ -8,6 +8,10 @@ var ProjectSchema = new Schema({
         required: true,
         trim: true
     },
+    description: {
+        type: String,
+        trim: true
+    },
     state: {
         type: Number,
         required: true,

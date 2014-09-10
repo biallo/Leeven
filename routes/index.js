@@ -12,11 +12,11 @@ var user = require('./../controllers/user');
 module.exports = function(app, auth) {
 
     //登录
-    app.get('/', user.index);
+    app.get('/', auth.noNeedLogin, user.index);
     app.post('/login', user.login);
 
     //注册
-    app.get('/signup', user.signup);
+    app.get('/signup', auth.noNeedLogin, user.signup);
     app.post('/signup', user.create);
 
     //退出登录

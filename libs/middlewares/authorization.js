@@ -1,10 +1,20 @@
 /**
- * 是否登录
+ * 需要登录
  */
-exports.requiresLogin = function(req, res, next) {
-	console.log(req.isAuthenticated());
+exports.needToLogin = function(req, res, next) {
     if (!req.isAuthenticated()) {
         return res.redirect('/');
     }
     next();
 };
+
+/**
+ * 无需登录
+ * 登录后无法访问登录、注册页面
+ */
+exports.noNeedLogin = function(req, res, next) {
+	if (req.isAuthenticated()) {
+        return res.redirect('/project/' + req.user.group_id);
+    }
+    next();
+}

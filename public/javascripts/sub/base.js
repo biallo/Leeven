@@ -88,4 +88,10 @@
 
     }
 
+    /**
+     * Initializing dropdown
+     */
+    $('.ui.dropdown').dropdown();
+
+
 })(window.jQuery);

@@ -1,1 +1,49 @@
-project list
+<section class="page-projects">
+	<div class="container">
+		<div class="option-holder">
+			<div class="right">
+				<div id="btnAddProject" class="ui green button">
+				  <i class="add icon"></i>
+				  <span class="text">新建项目</span>
+				</div>
+			</div>
+		</div>
+		<div class="ui stacked segment list-holder">
+		  	{{#if projects}}
+				{{#each projects}}
+				<div class="ui stackable items">
+				  	<a href="/project/{{project._id}}" class="item">
+				    	<div class="title">{{project.name}}</div>
+						<div class="description">{{project.description}}</div>
+				  	</a>
+				</div>
+				{{/each}}
+		  	{{else}}
+			<div class="ui message">
+			  	<div class="header">你的团队没有建立任何项目</div>
+			  	<p>项目一旦建立，团队中的所有成员都可以对它进行操作</p>
+			</div>
+		  	{{/if}}
+		</div>
+	</div>
+	{{!-- /.container --}}
+
+	<div class="ui wide styled sidebar sidebar-project">
+	  	<h3 class="ui header"></h3>
+	  	<form id="formProject" class="ui form">
+		    <div class="field">
+		      <label>名称</label>
+		      <input type="text" name="name" placeholder="Name">
+		    </div>
+		    <div class="field">
+		      <label>描述</label>
+		      <textarea name="description" placeholder="description"></textarea>
+		    </div>
+	    	<div class="ui green fluid button submit">提交</div>
+	    	<input type="hidden" name="pId">
+	    	<div class="ui error message"></div>
+	  	</form>
+	</div>
+	{{!-- /.sidebar --}}
+
+</section>

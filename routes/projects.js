@@ -1,7 +1,7 @@
 /**
  * Module dependencies.
  */
-var project = require('./../controllers/project');
+var project = require('./../controllers/projects');
 
 
 /**
@@ -11,6 +11,6 @@ var project = require('./../controllers/project');
  */
 module.exports = function(app, auth) {
 
-  app.get('/project/:groupID', auth.requiresLogin, project.list);
+  app.get('/projects/:groupID', auth.needToLogin, project.list);
 
 }

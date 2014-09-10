@@ -44,7 +44,7 @@ module.exports = function(grunt) {
                 files: {
                     'public/javascripts/libs.min.js': ['public/libs/jquery/jquery-1.11.1.js', 'public/libs/semantic/javascript/semantic.js', 'public/libs/npgrogress/npgrogress.js', 'public/javascripts/sub/base.js'],
                     'public/javascripts/sign.min.js': ['public/javascripts/sub/login.js', 'public/javascripts/sub/signup.js'],
-                    'public/javascripts/script.min.js': ['public/javascripts/sub/project.js']
+                    'public/javascripts/script.min.js': ['public/javascripts/sub/projects.js']
                 }
             }
         },
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
                     args: [],
                     ignoredFiles: ['README.md', 'node_modules/**', '.DS_Store'],
                     watchedExtensions: ['js', 'hbs'],
-                    watchedFolders: ['controllers', 'routes', 'public'],
+                    watchedFolders: ['controllers', 'routes', 'public', 'views'],
                     debug: true,
                     delayTime: 1,
                     cwd: __dirname
