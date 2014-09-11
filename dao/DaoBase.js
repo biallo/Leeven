@@ -12,6 +12,12 @@ DaoBase = (function() {
                     return callback(null, doc);
                 });
             },
+            save: function(model, callback) {
+                model.save(function(error) {
+                    if (error) return callback(error);
+                    return callback(null, model);
+                });
+            },
             findById: function(id, callback) {
                 Model.findOne({
                     _id: id

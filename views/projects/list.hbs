@@ -12,10 +12,15 @@
 		  	{{#if projects}}
 				<div class="ui stackable items">
 					{{#each projects}}
-				  	<a href="/project/{{_id}}" class="item">
-				    	<div class="title">{{name}}</div>
-						<div class="description">{{description}}</div>
-				  	</a>
+				  	<div class="item">
+				  		<a href="/files/{{_id}}">
+					    	<div class="title" title="{{name}}">{{name}}</div>
+							<div class="description" title="{{description}}">{{description}}</div>
+						</a>
+						<a class="ui right blue corner label setting-project" data-pid="{{_id}}" title="编辑">
+					    	<i class="setting icon"></i>
+					  	</a>
+				  	</div>
 				  	{{/each}}
 				</div>
 		  	{{else}}
@@ -29,17 +34,19 @@
 	{{!-- /.container --}}
 
 	<div class="ui wide styled sidebar sidebar-project">
+		<a class="ui top right attached label close-sidebar">关闭</a>
 	  	<h3 class="ui header"></h3>
 	  	<form id="formProject" class="ui form" data-groupid="{{user.group_id}}">
 		    <div class="field">
-		      <label>名称</label>
-		      <input type="text" name="name" placeholder="Name">
+		      	<label>名称</label>
+		      	<input type="text" name="name" placeholder="Name">
 		    </div>
 		    <div class="field">
-		      <label>描述</label>
-		      <textarea name="description" placeholder="description"></textarea>
+		      	<label>描述</label>
+		      	<textarea name="description" placeholder="description"></textarea>
 		    </div>
 	    	<div class="ui green fluid button submit">提交</div>
+	    	<div class="ui red fluid button del-project">删除项目</div>
 	    	<div class="ui error message msg-project-form"></div>
 	  	</form>
 	</div>

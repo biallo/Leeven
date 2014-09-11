@@ -14,7 +14,7 @@ exports.needToLogin = function(req, res, next) {
  */
 exports.noNeedLogin = function(req, res, next) {
 	if (req.isAuthenticated()) {
-        return res.redirect('/project/' + req.user.group_id);
+        return res.redirect('/projects/' + req.user.group_id);
     }
     next();
 }

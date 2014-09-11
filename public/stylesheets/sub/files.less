@@ -1,0 +1,73 @@
+.page-files {
+    margin-top: 40px;
+    .option-holder{
+    	.ui.header{
+    		color: #555;
+    	}
+    }
+    .list-holder {
+        margin: 0 10px;
+        .items {
+            >.item {
+            	position: relative;
+                width: 173px;
+                min-height: 140px;
+                padding: 0;
+                overflow: hidden;
+                border-bottom-width: 0;
+                box-shadow: 0 0 0;
+                text-align: center;
+                padding-top: .8em;
+                transition: none;
+                cursor: default;
+                &:hover{
+                	box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+                	border-bottom-width: 0.2em;
+                	.options{
+                		display: block;
+                	}
+                }
+                .icon.file {
+                    font-size: 5.5em;
+                    margin: 0;
+                    color: #333;
+                }
+                .title {
+                    margin-top: .5em;
+                    color: #555;
+                    display: block;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    padding: 0 .5em;
+                }
+                .options{
+                	display: none;
+                	position: absolute;
+                	top: 1em;
+                	right: .4em;
+            		>a{
+            			display: block;
+            			background: #999;
+            			text-align: center;
+            			margin-bottom: .4em;
+            			padding: .3em;
+            			border-radius: 50%;
+            			&:hover{
+            				background: #777;
+            			}
+            			i.icon{
+							margin: 0;
+							color: #fff;
+							opacity: 1;
+            			}
+            		}
+                }
+            }
+        }
+    }
+    .del-file {
+        display: none;
+        margin-top: 10px;
+    }
+}

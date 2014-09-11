@@ -1,0 +1,65 @@
+<section class="page-files">
+	<div class="container">
+		<div class="option-holder">
+			<div class="left">
+				<div class="ui huge header">{{project.name}}</div>
+			</div>
+			<div class="right">
+				<div id="btnAddFile" class="ui green button">
+				  <i class="add icon"></i>
+				  <span class="text">新建文档</span>
+				</div>
+			</div>
+		</div>
+		<div class="ui stacked segment list-holder">
+		  	{{#if files}}
+				<div class="ui stackable items">
+					{{#each files}}
+				  	<div class="item">
+				  		<a href="/viewfile/{{_id}}">
+					  		<i class="icon text file outline"></i>
+						    <div class="title" title="{{name}}">{{name}}</div>
+					    </a>
+					    <div class="options">
+					    	<a class="setting-file" title="编辑" data-fid="{{_id}}">
+					    		<i class="icon setting"></i>
+					    	</a>
+					    	<a href="/editfile/{{_id}}" title="编写文档">
+					    		<i class="icon edit"></i>
+					    	</a>
+					    </div>
+				  	</div>
+				  	{{/each}}
+				</div>
+		  	{{else}}
+			<div class="ui message">
+			  	<div class="header">该项目中没有任何文档</div>
+			  	<p>文档一旦建立，团队中的所有成员都可以对它进行操作</p>
+			</div>
+		  	{{/if}}
+		</div>
+	</div>
+	{{!-- /.container --}}
+
+
+	<div class="ui wide styled sidebar sidebar-file">
+		<a class="ui top right attached label close-sidebar">关闭</a>
+	  	<h3 class="ui header"></h3>
+	  	<form id="formFile" class="ui form" data-pid="{{project._id}}">
+		    <div class="field">
+		      	<label>名称</label>
+		      	<input type="text" name="name" placeholder="Name">
+		    </div>
+		    <div class="field">
+		      	<label>类型</label>
+		      	<input type="text" name="file_type" readonly="readonly" value="Markdown">
+		    </div>
+	    	<div class="ui green fluid button submit">提交</div>
+	    	<div class="ui red fluid button del-file">删除文档</div>
+	    	<div class="ui error message msg-file-form"></div>
+	  	</form>
+	</div>
+	{{!-- /.sidebar --}}
+
+
+</section>

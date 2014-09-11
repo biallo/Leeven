@@ -1,12 +1,8 @@
 .page-projects {
-    margin-top: 30px;
+    margin-top: 40px;
     .list-holder {
         margin: 0 10px;
         .items {
-        	a{
-        		text-decoration: none;
-            	color: #333;
-        	}
             >.item {
                 width: 173px;
                 min-height: 140px;
@@ -30,5 +26,18 @@
                 }
             }
         }
+        .edit-project{
+            &:hover{
+                &:after{
+                    border-right-width: 3.2em;
+                    border-bottom-width: 3.2em;
+                }
+            }
+        }
+    }
+
+    .del-project{
+        display: none;
+        margin-top: 10px;
     }
 }

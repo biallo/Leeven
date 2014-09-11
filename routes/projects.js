@@ -1,20 +1,24 @@
 /**
  * Module dependencies.
  */
-var project = require('./../controllers/projects');
+var projects = require('./../controllers/projects');
 
 
 /**
- *  server `route`
- *  @param {function} app
- *  @param {function} auth
+ *  项目
  */
 module.exports = function(app, auth) {
 
-  app.get('/projects/:groupID', auth.needToLogin, project.list);
+  //获取项目列表
+  app.get('/projects/:groupID', auth.needToLogin, projects.list);
 
-  app.post('/projects/:groupID/create', project.create);
+  //新建项目
+  app.post('/projects/:groupID', projects.create);
 
-  app.put('/projects/:groupID/update', project.update);
+  //编辑项目
+  app.put('/projects/:projectID', projects.update);
+
+  //删除项目
+  app.delete('/projects/:projectID', projects.del);
 
 }

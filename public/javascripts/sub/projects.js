@@ -1,17 +1,59 @@
 (function($) {
     if ($('.page-projects').length) {
 
-        //“新增项目”按钮的点击事件
+        /**
+         * “新增项目”按钮的点击事件
+         */
         $('#btnAddProject').on('click', function() {
+        	//配置form
+            $('.sidebar-project .header').text('新增项目');
+            $('#formProject').data('method', 'post');
 
-        	$('.sidebar-project .header').text('新增项目');
-        	$('#formProject').data('action', 'create');
+            //隐藏删除按钮
+            $('.del-project').css('display', 'none');
 
             $('.sidebar-project')
                 .sidebar({
                     overlay: true
                 })
-                .sidebar('toggle');
+                .sidebar('show');
+        });
+
+        /**
+         * “编辑项目”按钮的点击事件
+         */
+        $('.setting-project').on('click', function() {
+        	var _this = $(this);
+
+        	//配置form
+        	$('.sidebar-project .header').text('编辑项目');
+        	$('#formProject').data('method', 'put');
+        	$('#formProject input[name="name"]').val(_this.prev().find('.title').text());
+        	$('#formProject textarea[name="description"]').val(_this.prev().find('.description').text());
+        	$('#formProject').data('pid', _this.data('pid'));
+
+        	//显示删除按钮
+        	$('.del-project').css('display', 'block');
+
+        	$('.sidebar-project')
+                .sidebar({
+                    overlay: true
+                })
+                .sidebar('show');
+
+        });
+
+
+        /**
+         * “删除项目”按钮的点击事件
+         */
+        $('.del-project').on('click', function() {
+        	if (confirm('本操作将删除该项目及以下的所有文档，确认删除？')) {
+        		//配置form
+        		$('#formProject').data('method', 'delete');
+
+        		submitProject();
+        	}
         });
 
         /**
@@ -39,11 +81,19 @@
 
         /**
          * 提交form
-         * form action = create || update
+         * method: post || put || delete
+         * url: /project/ + (groupID || projectID)
          */
         function submitProject() {
-        	$.myAjax({
-                url: '/projects/'+ $('#formProject').data('groupid') + '/' + $('#formProject').data('action'),
+        	var method = $('#formProject').data('method'),
+        		id = $('#formProject').data('groupid');
+        	if(method !== 'post') {
+        		id = $('#formProject').data('pid');
+        	}
+
+            $.myAjax({
+            	type: method,
+                url: '/projects/' + id,
                 data: $('#formProject').serialize(),
                 beforeSend: function() {
                     $('#btnAddProject').addClass('loading');
@@ -63,8 +113,6 @@
                 }
             });
         }
-
-
 
 
     }

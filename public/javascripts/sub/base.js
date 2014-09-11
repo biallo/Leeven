@@ -93,5 +93,12 @@
      */
     $('.ui.dropdown').dropdown();
 
+    /**
+     * 关闭sidebar（通用）
+     */
+    $('.close-sidebar').on('click', function() {
+        $('.ui.sidebar').sidebar('hide');
+        $('.ui.sidebar form')[0].reset();
+    });
 
 })(window.jQuery);

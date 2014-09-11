@@ -2,39 +2,50 @@
  * Module dependencies.
  */
 var async = require('async');
+var FileDao = require('./../dao').FileDao;
 var ProjectDao = require('./../dao').ProjectDao;
 
 /**
- * 项目列表
+ * 文档列表
  */
 exports.list = function(req, res) {
 
-    ProjectDao.getList({
-        criteria: {
-            group_id: req.params.groupID
-        }
-    }, {
-        'createdTime': '-1'
-    }, function(err, list) {
-        if (!err) {
-            return res.render('projects/list', {
-                user: req.user,
-                projects: list
-            });
-        } else {
-            return res.render('projects/list', {
-                user: req.user
-            });
-        }
+    ProjectDao.findById(req.params.projectID, function(err, project) {
+        FileDao.getList({
+            criteria: {
+                project_id :req.params.projectID
+            }
+        }, {
+            'createdTime': '-1'
+        }, function(err, list) {
+            if (!err) {
+                return res.render('files/list', {
+                    user: req.user,
+                    files: list,
+                    project: {
+                        _id: req.params.projectID,
+                        name: project.name
+                    }
+
+                });
+            } else {
+                return res.render('files/list', {
+                    user: req.user,
+                    project: {
+                        _id: req.params.projectID,
+                        name: project.name
+                    }
+                });
+            }
+        });
     });
 
 };
 
 /**
- * 新建项目
+ * 新建文档
  */
 exports.create = function(req, res) {
-
     req.assert('name', '名称不能为空').notEmpty();
 
     var errors = req.validationErrors();
@@ -45,9 +56,11 @@ exports.create = function(req, res) {
 
     var doc = req.body;
 
-    doc.group_id = req.params.groupID;
+    doc.project_id = req.params.projectID;
 
-    ProjectDao.create(doc, function(err, doc) {
+    console.log(doc);
+
+    FileDao.create(doc, function(err, doc) {
         if (!err) {
             return res.sucMsg();
         } else {
@@ -59,7 +72,7 @@ exports.create = function(req, res) {
 };
 
 /**
- * 编辑项目
+ * 编辑文档
  */
 exports.update = function(req, res) {
     req.assert('name', '名称不能为空').notEmpty();
@@ -70,8 +83,8 @@ exports.update = function(req, res) {
         return res.errMsg(errors);
     };
 
-    ProjectDao.update({
-        _id: req.params.projectID
+    FileDao.update({
+        _id: req.params.fileID
     }, req.body, '', function(err) {
         if (!err) {
             return res.sucMsg();
@@ -83,14 +96,13 @@ exports.update = function(req, res) {
     });
 };
 
-
 /**
- * 删除项目
+ * 删除文档
  */
 exports.del = function(req, res) {
-    if (req.params.projectID) {
-        ProjectDao.del({
-            _id: req.params.projectID
+    if (req.params.fileID) {
+        FileDao.del({
+            _id: req.params.fileID
         }, function(err) {
             if (!err) {
                 return res.sucMsg();

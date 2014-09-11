@@ -9,6 +9,9 @@ var FileSchema = new Schema({
         trim: true
     },
     content: {
+        type: String
+    },
+    file_type: {
         type: String,
         required: true
     },
@@ -26,18 +29,13 @@ var FileSchema = new Schema({
         ref: 'project'
     },
     log_id: {
-    	type: ObjectId,
-    	ref: 'filelog'
+        type: ObjectId,
+        ref: 'filelog'
     }
 });
 
 FileSchema.path('name').validate(function(name) {
     return name.length;
 }, '名称不能为空');
-
-FileSchema.path('content').validate(function(content) {
-    return content.length;
-}, '内容不能为空');
-
 
 mongoose.model('File', FileSchema);
