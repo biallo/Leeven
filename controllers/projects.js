@@ -3,6 +3,7 @@
  */
 var async = require('async');
 var ProjectDao = require('./../dao').ProjectDao;
+var FileDao = require('./../dao').FileDao;
 
 /**
  * 项目列表
@@ -92,9 +93,19 @@ exports.del = function(req, res) {
         ProjectDao.del({
             _id: req.params.projectID
         }, function(err) {
-            if (!err) {
-                return res.sucMsg();
-            } else {
+            if(!err){
+                FileDao.del({
+                    project_id: req.params.projectID
+                }, function() {
+                    if (!err) {
+                        return res.sucMsg();
+                    } else {
+                        return res.errMsg([{
+                            msg: '删除失败，请稍后重试'
+                        }]);
+                    }
+                });
+            }else{
                 return res.errMsg([{
                     msg: '删除失败，请稍后重试'
                 }]);

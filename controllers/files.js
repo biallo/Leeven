@@ -1,7 +1,7 @@
 /**
  * Module dependencies.
  */
-var md = require("markdown-js");
+var md = require("markdown").markdown;
 var async = require('async');
 var FileDao = require('./../dao').FileDao;
 var ProjectDao = require('./../dao').ProjectDao;
@@ -12,33 +12,39 @@ var ProjectDao = require('./../dao').ProjectDao;
 exports.list = function(req, res) {
 
     ProjectDao.findById(req.params.projectID, function(err, project) {
-        FileDao.getList({
-            criteria: {
-                project_id: req.params.projectID
-            }
-        }, {
-            'createdTime': '-1'
-        }, function(err, list) {
-            if (!err) {
-                return res.render('files/list', {
-                    user: req.user,
-                    files: list,
-                    project: {
-                        _id: req.params.projectID,
-                        name: project.name
-                    }
-                });
+        if (project) {
+            FileDao.getList({
+                criteria: {
+                    project_id: req.params.projectID
+                }
+            }, {
+                'createdTime': '-1'
+            }, function(err, list) {
+                if (!err) {
+                    return res.render('files/list', {
+                        user: req.user,
+                        files: list,
+                        project: {
+                            _id: req.params.projectID,
+                            name: project.name
+                        }
+                    });
 
-            } else {
-                return res.render('files/list', {
-                    user: req.user,
-                    project: {
-                        _id: req.params.projectID,
-                        name: project.name
-                    }
-                });
-            }
-        });
+                } else {
+                    return res.render('files/list', {
+                        user: req.user,
+                        project: {
+                            _id: req.params.projectID,
+                            name: project.name
+                        }
+                    });
+                }
+            });
+        } else {
+            return res.render('404', {
+                layout: 'error-layout'
+            });
+        }
     });
 
 };
@@ -58,8 +64,6 @@ exports.create = function(req, res) {
     var doc = req.body;
 
     doc.project_id = req.params.projectID;
-
-    console.log(doc);
 
     FileDao.create(doc, function(err, doc) {
         if (!err) {
@@ -127,15 +131,21 @@ exports.del = function(req, res) {
  */
 exports.view = function(req, res) {
     FileDao.findById(req.params.fileID, function(err, file) {
+        if (file) {
+            if (file.file_type === 'Markdown') {
+                file.content = md.toHTML(file.content);
+            }
 
-        if(file.file_type === 'Markdown') {
-            file.content = md.makeHtml(file.content);
+            return res.render('files/view', {
+                user: req.user,
+                file: file
+            });
+        } else {
+            return res.render('404', {
+                layout: 'error-layout'
+            });
         }
-        
-        return res.render('files/view', {
-            user: req.user,
-            file: file
-        });
+
     });
 };
 
@@ -144,10 +154,16 @@ exports.view = function(req, res) {
  */
 exports.fileContent = function(req, res) {
     FileDao.findById(req.params.fileID, function(err, file) {
-        return res.render('files/edit', {
-            user: req.user,
-            file: file
-        });
+        if (file) {
+            return res.render('files/edit', {
+                user: req.user,
+                file: file
+            });
+        } else {
+            return res.render('404', {
+                layout: 'error-layout'
+            });
+        }
     });
 
 };
