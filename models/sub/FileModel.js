@@ -9,7 +9,8 @@ var FileSchema = new Schema({
         trim: true
     },
     content: {
-        type: String
+        type: String,
+        default: ''
     },
     file_type: {
         type: String,

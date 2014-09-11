@@ -1,0 +1,18 @@
+<section class="page-view-file">
+	<div class="container">
+		<div class="option-holder">
+			<div class="left">
+				<div class="ui huge header">{{file.name}}</div>
+			</div>
+			<div class="right">
+				<div class="ui medium buttons">
+				  	<div class="ui button btn-back">返回</div>
+				  	<div class="or"></div>
+				  	<a href="/editfile/{{file._id}}" class="ui button blue">编写文档</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui piled segment file-content">{{{file.content}}}</div>
+	</div>
+</section>

@@ -1,6 +1,7 @@
 /**
  * Module dependencies.
  */
+var md = require("markdown-js");
 var async = require('async');
 var FileDao = require('./../dao').FileDao;
 var ProjectDao = require('./../dao').ProjectDao;
@@ -13,7 +14,7 @@ exports.list = function(req, res) {
     ProjectDao.findById(req.params.projectID, function(err, project) {
         FileDao.getList({
             criteria: {
-                project_id :req.params.projectID
+                project_id: req.params.projectID
             }
         }, {
             'createdTime': '-1'
@@ -26,8 +27,8 @@ exports.list = function(req, res) {
                         _id: req.params.projectID,
                         name: project.name
                     }
-
                 });
+
             } else {
                 return res.render('files/list', {
                     user: req.user,
@@ -96,6 +97,7 @@ exports.update = function(req, res) {
     });
 };
 
+
 /**
  * 删除文档
  */
@@ -117,4 +119,54 @@ exports.del = function(req, res) {
             msg: '参数错误，删除失败。'
         }]);
     }
+};
+
+
+/**
+ * 查看文档
+ */
+exports.view = function(req, res) {
+    FileDao.findById(req.params.fileID, function(err, file) {
+
+        if(file.file_type === 'Markdown') {
+            file.content = md.makeHtml(file.content);
+        }
+        
+        return res.render('files/view', {
+            user: req.user,
+            file: file
+        });
+    });
+};
+
+/**
+ * 获取文档内容
+ */
+exports.fileContent = function(req, res) {
+    FileDao.findById(req.params.fileID, function(err, file) {
+        return res.render('files/edit', {
+            user: req.user,
+            file: file
+        });
+    });
+
+};
+
+/**
+ * 修改文档内容
+ */
+exports.edit = function(req, res) {
+    FileDao.update({
+        _id: req.params.fileID
+    }, req.body, '', function(err) {
+        if (!err) {
+            return res.sucMsg({
+                msg: '保存成功!'
+            });
+        } else {
+            return res.errMsg({
+                msg: '保存失败，请稍后重试。'
+            });
+        }
+    });
 };

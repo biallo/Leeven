@@ -22,7 +22,11 @@ module.exports = function(app, auth) {
     app.delete('/files/:fileID', files.del);
 
     //查看文档
+    app.get('/viewfile/:fileID', auth.needToLogin, files.view);
 
-    //编写文档
+    //编写文档-获取文档内容
+    app.get('/editfile/:fileID', auth.needToLogin, files.fileContent);
 
+    //修改文档内容
+    app.put('/editfile/:fileID', files.edit);
 }

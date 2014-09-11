@@ -101,4 +101,11 @@
         $('.ui.sidebar form')[0].reset();
     });
 
+    /**
+     * 返回上一页（通用）
+     */
+    $('.btn-back').on('click', function() {
+        window.history.go(-1);
+    });
+
 })(window.jQuery);

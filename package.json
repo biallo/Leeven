@@ -25,7 +25,8 @@
         "express-validator": "2.4.0",
         "async": "0.9.0",
         "express-session": "1.8.1",
-        "connect-mongo": "0.4.1"
+        "connect-mongo": "0.4.1",
+        "markdown-js": "0.0.3"
     },
     "devDependencies": {
         "supertest": "latest",
