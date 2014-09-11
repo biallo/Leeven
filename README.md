@@ -12,19 +12,16 @@ Leeven
 |-- libs
 |	|--middlewares	
 |-- models
-|	|--sub
 |-- public
 |	|--images
 |	|	|--avatar
 |	|--javascripts
-|	|	|--sub
 |	|--libs
 |	|	|--ace
 |	|	|--handlebars
 |	|	|--nprogress
 |	|	|--semantic
 |	|--stylesheets
-|	|	|--sub
 |-- routes
 |-- views
 |-- LICENSE.md
