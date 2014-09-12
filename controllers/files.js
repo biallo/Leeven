@@ -29,14 +29,11 @@ exports.list = function(req, res) {
                             name: project.name
                         }
                     });
-
                 } else {
-                    return res.render('files/list', {
-                        user: req.user,
-                        project: {
-                            _id: req.params.projectID,
-                            name: project.name
-                        }
+                    return res.render('500', {
+                        layout: 'error-layout',
+                        message: err.message,
+                        error: err
                     });
                 }
             });

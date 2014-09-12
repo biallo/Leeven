@@ -44,7 +44,7 @@
                 },
                 success: function(data) {
                     if (data.status) { //成功
-                        location.href = '/projects/' + data.result.group_id;
+                        location.href = '/projects/' + data.result.team_id;
                     } else { //失败
                         $('.message.error').html($.errMsg(data.result)).show();
                     }

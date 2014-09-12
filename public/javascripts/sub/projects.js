@@ -82,11 +82,11 @@
         /**
          * 提交form
          * method: post || put || delete
-         * url: /project/ + (groupID || projectID)
+         * url: /project/ + (teaamID || projectID)
          */
         function submitProject() {
         	var method = $('#formProject').data('method'),
-        		id = $('#formProject').data('groupid');
+        		id = $('#formProject').data('teamid');
         	if(method !== 'post') {
         		id = $('#formProject').data('pid');
         	}

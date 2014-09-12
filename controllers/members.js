@@ -9,21 +9,25 @@ var UserDao = require('./../dao').UserDao;
  */
 exports.list = function(req, res) {
 
-	UserDao.getList({
+    //TODO: 先验证teamID的合法性
+    
+    UserDao.getList({
         criteria: {
-            group_id: req.params.teamID
+            team_id: req.params.teamID
         }
     }, {
         'createdTime': '-1'
     }, function(err, list) {
         if (!err) {
             return res.render('members/list', {
-		        user: req.user,
-		        members: list
-		    });
+                user: req.user,
+                members: list
+            });
         } else {
-            return res.render('projects/list', {
-                user: req.user
+            return res.render('500', {
+                layout: 'error-layout',
+                message: err.message,
+                error: err
             });
         }
     });

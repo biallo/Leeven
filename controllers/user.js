@@ -121,7 +121,7 @@ exports.login = function(req, res) {
                     clearUser(user);
                     if (err) { return next(err); }
                     return res.sucMsg({
-                        group_id: req.user.group_id
+                        team_id: req.user.team_id
                     });
                 });
             }

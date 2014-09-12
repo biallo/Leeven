@@ -10,9 +10,11 @@ var FileDao = require('./../dao').FileDao;
  */
 exports.list = function(req, res) {
 
+    //TODO: 先验证teamID的合法性
+
     ProjectDao.getList({
         criteria: {
-            group_id: req.params.teamID
+            team_id: req.params.teamID
         }
     }, {
         'createdTime': '-1'
@@ -23,8 +25,10 @@ exports.list = function(req, res) {
                 projects: list
             });
         } else {
-            return res.render('projects/list', {
-                user: req.user
+            return res.render('500', {
+                layout: 'error-layout',
+                message: err.message,
+                error: err
             });
         }
     });
@@ -46,7 +50,7 @@ exports.create = function(req, res) {
 
     var doc = req.body;
 
-    doc.group_id = req.params.teamID;
+    doc.team_id = req.params.teamID;
 
     ProjectDao.create(doc, function(err, doc) {
         if (!err) {
