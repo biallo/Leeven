@@ -11,5 +11,4 @@ module.exports = function(app, auth) {
 
   app.get('/team', auth.needToLogin, team.index);
 
-
 }

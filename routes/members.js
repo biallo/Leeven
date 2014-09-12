@@ -10,7 +10,7 @@ var members = require('./../controllers/members');
 module.exports = function(app, auth) {
 
   //获取成员列表
-  app.get('/members/:groupID', auth.needToLogin, members.list);
+  app.get('/members/:teamID', auth.needToLogin, members.list);
 
 
 }

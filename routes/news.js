@@ -10,7 +10,7 @@ var news = require('./../controllers/news');
 module.exports = function(app, auth) {
 
   //获取列表
-  app.get('/news/:groupID', auth.needToLogin, news.list);
+  app.get('/news/:teamID', auth.needToLogin, news.list);
 
 
 }

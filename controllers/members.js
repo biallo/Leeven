@@ -11,7 +11,7 @@ exports.list = function(req, res) {
 
 	UserDao.getList({
         criteria: {
-            group_id: req.params.groupID
+            group_id: req.params.teamID
         }
     }, {
         'createdTime': '-1'

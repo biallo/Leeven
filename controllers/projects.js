@@ -12,7 +12,7 @@ exports.list = function(req, res) {
 
     ProjectDao.getList({
         criteria: {
-            group_id: req.params.groupID
+            group_id: req.params.teamID
         }
     }, {
         'createdTime': '-1'
@@ -46,7 +46,7 @@ exports.create = function(req, res) {
 
     var doc = req.body;
 
-    doc.group_id = req.params.groupID;
+    doc.group_id = req.params.teamID;
 
     ProjectDao.create(doc, function(err, doc) {
         if (!err) {
