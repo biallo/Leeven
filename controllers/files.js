@@ -1,7 +1,7 @@
 /**
  * Module dependencies.
  */
-var md = require("markdown").markdown;
+var md = require("marked");
 var async = require('async');
 var FileDao = require('./../dao').FileDao;
 var ProjectDao = require('./../dao').ProjectDao;
@@ -132,9 +132,9 @@ exports.del = function(req, res) {
 exports.view = function(req, res) {
     FileDao.findById(req.params.fileID, function(err, file) {
         if (file) {
-            if (file.file_type === 'Markdown') {
-                file.content = md.toHTML(file.content);
-            }
+            // if (file.file_type === 'Markdown') {
+            //     file.content = md(file.content);
+            // }
 
             return res.render('files/view', {
                 user: req.user,
@@ -156,6 +156,7 @@ exports.fileContent = function(req, res) {
     FileDao.findById(req.params.fileID, function(err, file) {
         if (file) {
             return res.render('files/edit', {
+                layout: 'editor-layout',
                 user: req.user,
                 file: file
             });

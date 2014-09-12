@@ -5,14 +5,15 @@
 				<div class="ui huge header">{{file.name}}</div>
 			</div>
 			<div class="right">
-				<div class="ui medium buttons">
-				  	<div class="ui button btn-back">返回</div>
-				  	<div class="or"></div>
-				  	<a href="/editfile/{{file._id}}" class="ui button blue">编写文档</a>
-				</div>
+				<a href="/editfile/{{file._id}}" class="ui button blue">
+					<i class="pencil icon"></i>
+					<span class="text">编写文档</span>
+				</a>
 			</div>
 		</div>
 
-		<div class="ui piled segment file-content">{{{file.content}}}</div>
+		<article class="ui piled segment file-content md-file" data-md="{{file.content}}"></article>
 	</div>
 </section>
+
+<script src="/libs/marked/marked.js"></script>

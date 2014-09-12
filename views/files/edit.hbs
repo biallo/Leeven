@@ -1,24 +1,24 @@
 <section class="page-edit-file">
-	<div class="container">
-		<div class="option-holder">
-			<div class="left">
-				<div class="ui huge header">{{file.name}}</div>
-			</div>
-			<div class="left">
-				<div class="editor-msg"></div>
-			</div>
-			<div class="right">
-				<div class="ui buttons">
-				  	<div class="ui button btn-back">返回</div>
-				  	<a href="/viewfile/{{file._id}}" class="ui button">查看</a>
-				  	<div id="btnSaveFile" class="ui button green">保存</div>
-				</div>
+	<div class="option-holder">
+		<div class="left">
+			<div class="ui large header">{{file.name}}</div>
+		</div>
+		<div class="left">
+			<div class="editor-msg"></div>
+		</div>
+		<div class="right">
+			<div class="ui small buttons">
+			  	<div class="ui button btn-back">返回</div>
+			  	<div class="or"></div>
+			  	<div id="btnSaveFile" class="ui button green">保存</div>
 			</div>
 		</div>
-		<div class="editor-holder">
-			<div id="editor" data-content="{{file.content}}" data-fid="{{file._id}}"></div>
-		</div>
+	</div>
+	<div class="editor-holder">
+		<div id="editor" data-content="{{file.content}}" data-fid="{{file._id}}"></div>
+		<div class="preview md-file"></div>
 	</div>
 </section>
 
 <script src="/libs/ace/ace.js"></script>
+<script src="/libs/marked/marked.js"></script>

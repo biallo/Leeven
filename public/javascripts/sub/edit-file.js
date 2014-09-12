@@ -23,6 +23,8 @@
 
         editor.session.setValue($('#editor').data('content'), -1);
 
+        preview();
+
         /**
          * 绑定保存组合键
          */
@@ -39,6 +41,26 @@
         });
 
         /**
+         * 监听editor的改变，如果内容有变动，则自动更新预览
+         */
+        editor.getSession().on('change', function(e) {
+            var isClean = editor.session.getUndoManager().isClean();
+            if (!isClean) {
+                preview();
+            }
+        });
+
+        /**
+         * 生成预览
+         */
+        function preview() {
+            var mdContent = marked(editor.session.getValue());
+            $('.preview').html(mdContent);
+
+            editor.session.getUndoManager().markClean();
+        }
+
+        /**
          * “保存文档”按钮的点击事件
          */
         $('#btnSaveFile').on('click', function() {
@@ -53,7 +75,7 @@
                 type: 'put',
                 url: '/editfile/' + $('#editor').data('fid'),
                 data: {
-                	content: editor.session.getValue()
+                    content: editor.session.getValue()
                 },
                 beforeSend: function() {
                     $('#btnSaveFile').addClass('loading');
@@ -82,11 +104,12 @@
             //3s后消失
             OPT.timer = setTimeout(function() {
                 $('.editor-msg').transition('flash', function() {
-                	$(this).text('');
+                    $(this).text('');
                 });
             }, 3000);
 
         }
+
 
     }
 })(window.jQuery);

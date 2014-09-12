@@ -44,7 +44,7 @@ module.exports = function(grunt) {
                 files: {
                     'public/javascripts/libs.min.js': ['public/libs/jquery/jquery-1.11.1.js', 'public/libs/semantic/javascript/semantic.js', 'public/libs/npgrogress/npgrogress.js', 'public/javascripts/sub/base.js'],
                     'public/javascripts/sign.min.js': ['public/javascripts/sub/login.js', 'public/javascripts/sub/signup.js'],
-                    'public/javascripts/script.min.js': ['public/javascripts/sub/projects.js', 'public/javascripts/sub/files.js', 'public/javascripts/sub/edit-file.js']
+                    'public/javascripts/script.min.js': ['public/javascripts/sub/projects.js', 'public/javascripts/sub/files.js', 'public/javascripts/sub/edit-file.js', 'public/javascripts/sub/view-file.js']
                 }
             }
         },
