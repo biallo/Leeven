@@ -132,10 +132,6 @@ exports.del = function(req, res) {
 exports.view = function(req, res) {
     FileDao.findById(req.params.fileID, function(err, file) {
         if (file) {
-            // if (file.file_type === 'Markdown') {
-            //     file.content = md(file.content);
-            // }
-
             return res.render('files/view', {
                 user: req.user,
                 file: file

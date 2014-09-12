@@ -1,11 +1,11 @@
 <header class="ui inverted fixed menu leeven-header">
   <div class="container">
   		<div class="item brand">
-  			<img src="/images/logo-light.png" alt="">
+  			<img src="/images/logo-light.png" alt="Leeven" title="看它抖动的频率，怕了吧～">
   		</div>
   		<a href="/projects/{{user.group_id}}" class="item">项目</a>
-		<a href="/" class="item">团队</a>
-		<a href="/" class="item">动态</a>
+		<a href="/members/{{user.group_id}}" class="item">成员</a>
+		<a href="/news/{{user.group_id}}" class="item">动态</a>
 		<div class="right item user-dropdown">
 	  		<div class="ui dropdown">
 		        <span class="text">
@@ -13,7 +13,8 @@
 		        </span>
 		        <i class="icon dropdown"></i>
 		        <div class="menu">
-		          <a href="/setting/{{user._id}}" class="item"><i class="setting icon"></i>设置</a>
+		          <a href="/setting" class="item"><i class="setting icon"></i>设置</a>
+		          <a href="/team" class="item"><i class="users icon"></i>团队</a>
 		          <a href="/logout" class="item"><i class="sign out icon"></i>登出</a>
 		        </div>
 		    </div>

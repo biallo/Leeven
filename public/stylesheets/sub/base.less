@@ -30,6 +30,18 @@ a {
         >img {
             width: 1.5em;
             height: 1.5em;
+            -webkit-animation-iteration-count: infinite;
+            -moz-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            -webkit-animation-duration: .1s;
+            -moz-animation-duration: .1s;
+            animation-duration: .1s;
+           
+            &:hover{
+                -webkit-animation-name: tada;
+                -moz-animation-name: tada;
+                animation-name: tada;
+            }
         }
     }
     .user-dropdown {
@@ -56,6 +68,7 @@ a {
         float: right;
     }
 }
+
 .md-file {
     word-wrap: break-word;
     line-height: 1.2em;

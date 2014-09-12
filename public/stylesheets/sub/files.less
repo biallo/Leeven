@@ -44,13 +44,13 @@
                 .options{
                 	display: none;
                 	position: absolute;
-                	top: 1em;
-                	right: .4em;
+                	top: .5em;
+                	right: .5em;
             		>a{
             			display: block;
             			background: #999;
             			text-align: center;
-            			margin-bottom: .4em;
+            			margin-bottom: .3em;
             			padding: .3em;
             			border-radius: 50%;
             			&:hover{
@@ -69,5 +69,83 @@
     .del-file {
         display: none;
         margin-top: 10px;
+    }
+}
+
+
+.body-editor{
+    padding: 0;
+}
+.page-edit-file{
+    height: 100%;
+    position: relative;
+    padding-top: 40px;
+    .option-holder{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        margin: 0;
+        padding: 0 15px;
+        overflow: hidden;
+        background-image: linear-gradient(#fff, #ddd);
+        box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+        .ui.header{
+            color: #555;
+            height: 40px;
+            line-height: 40px !important;
+        }
+        .editor-msg{
+            margin-left: 10px;
+            color: #555;
+            height: 40px;
+            line-height: 40px !important;
+        }
+        .ui.buttons{
+            margin-top: 4px;
+            overflow: hidden;
+        }
+    }
+    .editor-holder{
+        height: 100%;
+        padding: 0;
+        
+        #editor{
+            float: left;
+            width: 55%;
+            height: 100%;
+        }
+        .preview{
+            float: left;
+            width: 45%;
+            height: 100%;
+            margin: 0;
+            border: 1px solid #eee;
+            position: relative;
+            padding: 1.5em;
+            overflow-y: auto;
+            &:after{
+                content: '预览';
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: block;
+                font-size: .8em;
+                color: #999;
+                padding: .3em .7em;
+                background: #f3f3f3;
+                border-bottom-left-radius: .4em;
+            }
+        }
+    }
+}
+
+.page-view-file {
+    margin-top: 40px;
+    padding-bottom: 30px;
+    .file-content{
+        padding: 1.4em;
+        margin: 30px 10px 0 !important;
     }
 }

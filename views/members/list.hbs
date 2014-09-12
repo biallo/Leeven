@@ -1,0 +1,20 @@
+<section class="page-members">
+	<div class="container">
+		<div class="member-list">
+			{{#if members}}
+			<div class="ui stackable items">
+				{{#each members}}
+			  	<div class="item">
+			  		<img class="member-avatar" src="/images/avatar/{{avatar}}">
+					<div class="name">{{name}}</div>
+			  	</div>
+			  	{{/each}}
+			</div>
+	  		{{/if}}
+		</div>
+		<div class="ui horizontal divider">邀请新成员</div>
+		<div class="add-member">
+			TODO～
+		</div>
+	</div>
+</section>
