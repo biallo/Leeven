@@ -39,6 +39,21 @@
     };
 
     /**
+     * format error message
+     * msg: [error messages]
+     */
+    $.errMsg = function(msg) {
+        var html = $('<ul></ul>');
+        if (msg.length) {
+            $.each(msg, function(index, item) {
+                html.append('<li>' + item.msg + '</li>');
+            });
+        }
+        return html;
+    };
+
+    
+    /**
      * tip-modal
      * option : String || Object
      * option = 'hide'
@@ -84,13 +99,6 @@
     $('.close-sidebar').on('click', function() {
         $('.ui.sidebar').sidebar('hide');
         $('.ui.sidebar form')[0].reset();
-    });
-
-    /**
-     * 返回上一页（通用）
-     */
-    $('.btn-back').on('click', function() {
-        window.history.go(-1);
     });
 
 })(window.jQuery);

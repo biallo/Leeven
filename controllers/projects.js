@@ -10,8 +10,6 @@ var FileDao = require('./../dao').FileDao;
  */
 exports.list = function(req, res) {
 
-    //TODO: 先验证teamID的合法性
-
     ProjectDao.getList({
         criteria: {
             team_id: req.user.team_now

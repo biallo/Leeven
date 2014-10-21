@@ -1,5 +1,23 @@
 <section class="page-members">
 	<div class="container">
+
+		<div class="members-header">
+			<form class="ui form form-add {{isError}}" action="/members/add">
+			  	<div class="inline field">
+				    <input type="text" name="email" placeholder="Email">
+					 <div class="ui green submit button">添加</div>
+			  	</div>
+			  	<div class="ui error message">{{msg}}</div>
+		    </form>
+          	<div class="sub">
+          		你可以通过账号（邮箱）将其他用户添加到你所在的团队中（暂无删除）。
+          	</div>
+	    </div>
+
+		<div class="ui horizontal divider">
+	        <i class="circular users icon"></i>
+      	</div>
+
 		<div class="member-list">
 			{{#if members}}
 			<div class="ui stackable items">
@@ -12,9 +30,6 @@
 			</div>
 	  		{{/if}}
 		</div>
-		邀请新成员
-		<div class="add-member">
-			TODO～
-		</div>
+
 	</div>
 </section>
