@@ -1,0 +1,38 @@
+//新建团队
+.page-team-create{
+	max-width: 580px;
+	margin: 40px auto;
+	margin: 4rem auto;
+}
+
+@media (max-width: 480px) {
+	.page-team-create{
+		margin: 0 auto;
+		padding: 0 10px;
+	}
+}
+
+//团队列表
+.page-team{
+	margin-top: 40px;
+	.team-list{
+		padding: 0;
+		>a{
+			display: block;
+			border-bottom: 1px solid #eee;
+			padding: 1em;
+			cursor: pointer;
+			overflow: hidden;
+			color: #555;
+			&:hover{
+				background: #f9f9f9;
+			}
+			&:last-child{
+				border-bottom: 0;
+			}
+			i.icon{
+				font-size: 18px;
+			}
+		}
+	}
+}

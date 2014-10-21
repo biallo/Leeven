@@ -17,7 +17,7 @@ var FilelogSchema = new Schema({
     },
     user_id: {
     	type: ObjectId,
-    	ref: 'user'
+    	ref: 'users'
     }
 });
 

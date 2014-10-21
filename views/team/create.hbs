@@ -1,0 +1,27 @@
+<section class="page-team-create">
+    {{#unless isNew}}
+    <div class="ui yellow message">
+        <div class="header">你不属于任何团队</div>
+        <p>你可以新建自己的团队，或联系其他团队邀请你加入。</p>
+    </div>
+    {{/unless}}
+    <form class="ui fluid form segment {{isError}}" action="/team/create" method="post">
+    	<h3 class="ui header">新建团队</h3>
+    	<div class="field">
+        	<label>团队名称</label>
+        	<input type="text" name="name" placeholder="Team Name" autofocus>
+    	</div>
+        <div class="ui submit button green animated">
+            <div class="visible content">新建</div>
+            <div class="hidden content">
+                <i class="icon add"></i>
+            </div>
+        </div>
+        {{#if isNew}}
+        <a href="/team" class="ui button">
+          <div class="visible content">返回</div>
+        </a>
+        {{/if}}
+        <div class="ui error message">{{msg}}</div>
+    </form>
+</section>

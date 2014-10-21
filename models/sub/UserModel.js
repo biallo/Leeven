@@ -39,10 +39,11 @@ var UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    team_id: {
-        type: String,
-        required: true,
-        default: 1
+    teams: {
+        type: Array
+    },
+    team_now: {
+        type: ObjectId
     }
 });
 

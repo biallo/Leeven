@@ -1,5 +1,24 @@
 <section class="page-team">
 	<div class="container">
-		团队
-	</di>
+		<div class="option-holder">
+			<div class="right">
+				<a href="/team/create" class="ui green button">
+				  <i class="add icon"></i>
+				  <span class="text">新建团队</span>
+				</a>
+			</div>
+		</div>
+		
+		<div class="team-list ui segment">
+			{{#each teams}}
+			<a class="segment-team" data-team="{{id}}">
+				{{name}}
+				{{#if active}}
+				<i class="flag icon green right"></i>
+				{{/if}}
+			</a>
+			{{/each}}
+		</div>
+
+	</div>
 </section>

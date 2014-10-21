@@ -20,16 +20,7 @@
     		<div class="content"></div>
 	    </div>
 		{{!-- /.tip-modal --}}
-
-		{{#if isproduction}}
-	    <script src="/javascripts/script.min.js"></script>
-	    {{else}}
-	    <script src="/libs/jquery/jquery-1.11.1.js"></script>
-	    <script src="/libs/semantic/javascript/semantic.js"></script>
-	    <script src="/libs/nprogress/nprogress.js"></script>
-	    <script src="/javascripts/sub/base.js"></script>
-	    <script src="/javascripts/sub/login.js"></script>
-	    <script src="/javascripts/sub/signup.js"></script>
-	    {{/if}}
+		
+		{{> script }}
 	</body>
 </html>

@@ -8,6 +8,7 @@ var async = require('async');
  */
 exports.list = function(req, res) {
     return res.render('news/list', {
-        user: req.user
+        user: req.user,
+        nav_news: true
     });
 }

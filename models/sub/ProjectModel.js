@@ -22,8 +22,8 @@ var ProjectSchema = new Schema({
         default: Date.now
     },
     team_id: {
-        type: String,
-        required: true
+        type: ObjectId,
+        ref: 'teams'
     }
 });
 

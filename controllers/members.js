@@ -13,7 +13,11 @@ exports.list = function(req, res) {
     
     UserDao.getList({
         criteria: {
-            team_id: req.params.teamID
+            teams: {
+                $elemMatch: {
+                    id: req.user.team_now
+                }
+            }
         }
     }, {
         'createdTime': '-1'
@@ -21,7 +25,8 @@ exports.list = function(req, res) {
         if (!err) {
             return res.render('members/list', {
                 user: req.user,
-                members: list
+                members: list,
+                nav_members: true
             });
         } else {
             return res.render('500', {

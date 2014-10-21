@@ -39,7 +39,7 @@
 
         $('.ui.form').form(validationRules, {
             onSuccess: function() {
-                submitForm();
+                $('.ui.form')[0].submit();
                 return false;
             },
             onFailure: function() {
@@ -47,36 +47,6 @@
                 return false;
             }
         });
-
-        /**
-         * 提交form
-         */
-        function submitForm() {
-            $.myAjax({
-                url: '/signup',
-                data: $('.ui.form').serialize(),
-                beforeSend: function() {
-                    $('.button.submit').addClass('loading');
-                },
-                success: function(data) {
-                    if (data.status) { //成功
-                        $.tipModal({
-                            title: '注册成功!',
-                            content: '去<a href="/">登录</a>爽一爽吧～',
-                            expire: -1
-                        });
-                    } else { //失败
-                        $('.message.error').html($.errMsg(data.result)).show();
-                    }
-                },
-                error: function() {
-                    $('.message.error').text('提交失败，请稍后重试').show();
-                },
-                complete: function() {
-                    $('.button.submit').removeClass('loading');
-                }
-            });
-        }
 
     }
 })(window.jQuery);

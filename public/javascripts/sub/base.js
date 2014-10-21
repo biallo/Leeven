@@ -39,21 +39,6 @@
     };
 
     /**
-     * format error message
-     * msg: [error messages]
-     */
-    $.errMsg = function(msg) {
-        var html = $('<ul></ul>');
-        if (msg.length) {
-            $.each(msg, function(index, item) {
-                html.append('<li>' + item.msg + '</li>');
-            });
-        }
-        return html;
-    };
-
-
-    /**
      * tip-modal
      * option : String || Object
      * option = 'hide'

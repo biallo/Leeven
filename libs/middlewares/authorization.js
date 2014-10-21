@@ -14,7 +14,11 @@ exports.needToLogin = function(req, res, next) {
  */
 exports.noNeedLogin = function(req, res, next) {
 	if (req.isAuthenticated()) {
-        return res.redirect('/projects/' + req.user.team_id);
+        if (req.user.team_now) { //如果已加入了团队，跳转到“项目”页面
+        	return res.redirect('/projects');
+        }else{ //跳转到“创建团队”页面
+        	return res.redirect('/team/create');
+        }
     }
     next();
 }

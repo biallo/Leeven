@@ -3,9 +3,9 @@
   		<div class="item brand">
   			<img src="/images/logo-light.png" alt="Leeven" title="看它抖动的频率，怕了吧～">
   		</div>
-  		<a href="/projects/{{user.team_id}}" class="item">项目</a>
-		<a href="/members/{{user.team_id}}" class="item">成员</a>
-		<a href="/news/{{user.team_id}}" class="item">动态</a>
+  		<a href="/projects" class="item {{#if nav_projects}}active{{/if}}">项目</a>
+		<a href="/members" class="item {{#if nav_members}}active{{/if}}">成员</a>
+		<a href="/news" class="item {{#if nav_news}}active{{/if}}">动态</a>
 		<div class="right item user-dropdown">
 	  		<div class="ui dropdown">
 		        <span class="text">

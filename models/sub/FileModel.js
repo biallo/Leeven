@@ -27,7 +27,7 @@ var FileSchema = new Schema({
     },
     project_id: {
         type: ObjectId,
-        ref: 'project'
+        ref: 'projects'
     },
     log_id: {
         type: ObjectId,

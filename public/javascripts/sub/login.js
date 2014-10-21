@@ -23,7 +23,7 @@
 
         $('.ui.form').form(validationRules, {
             onSuccess: function() {
-                submitForm();
+                $('.ui.form')[0].submit();
                 return false;
             },
             onFailure: function() {
@@ -31,32 +31,6 @@
                 return false;
             }
         });
-
-        /**
-         * 提交form
-         */
-        function submitForm() {
-            $.myAjax({
-                url: '/login',
-                data: $('.ui.form').serialize(),
-                beforeSend: function() {
-                    $('.button.submit').addClass('loading');
-                },
-                success: function(data) {
-                    if (data.status) { //成功
-                        location.href = '/projects/' + data.result.team_id;
-                    } else { //失败
-                        $('.message.error').html($.errMsg(data.result)).show();
-                    }
-                },
-                error: function() {
-                    $('.message.error').text('提交失败，请稍后重试').show();
-                },
-                complete: function() {
-                    $('.button.submit').removeClass('loading');
-                }
-            });
-        }
 
     }
 })(window.jQuery);

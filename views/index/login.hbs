@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="ui horizontal divider">登录</div>
-    <form class="ui form segment">
+    <form class="ui form segment {{isError}}" action="/login" method="post">
         <div class="field">
             <label>邮箱</label>
             <div class="ui left labeled icon input">
@@ -38,6 +38,6 @@
             <div class="or"></div>
             <a class="ui button" href="/signup">注册</a>
         </div>
-        <div class="ui error message"></div>
+        <div class="ui error message">{{msg}}</div>
     </form>
 </section>

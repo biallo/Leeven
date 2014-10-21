@@ -14,7 +14,7 @@ exports.list = function(req, res) {
 
     ProjectDao.getList({
         criteria: {
-            team_id: req.params.teamID
+            team_id: req.user.team_now
         }
     }, {
         'createdTime': '-1'
@@ -22,7 +22,8 @@ exports.list = function(req, res) {
         if (!err) {
             return res.render('projects/list', {
                 user: req.user,
-                projects: list
+                projects: list,
+                nav_projects: true
             });
         } else {
             return res.render('500', {
@@ -50,9 +51,9 @@ exports.create = function(req, res) {
 
     var doc = req.body;
 
-    doc.team_id = req.params.teamID;
+    doc.team_id = req.user.team_now;
 
-    ProjectDao.create(doc, function(err, doc) {
+    ProjectDao.create(doc, function(err, model) {
         if (!err) {
             return res.sucMsg();
         } else {

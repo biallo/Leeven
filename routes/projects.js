@@ -10,10 +10,10 @@ var projects = require('./../controllers/projects');
 module.exports = function(app, auth) {
 
   //获取项目列表
-  app.get('/projects/:teamID', auth.needToLogin, projects.list);
+  app.get('/projects', auth.needToLogin, projects.list);
 
   //新建项目
-  app.post('/projects/:teamID', projects.create);
+  app.post('/projects', projects.create);
 
   //编辑项目
   app.put('/projects/:projectID', projects.update);

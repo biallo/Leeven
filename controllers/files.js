@@ -62,7 +62,7 @@ exports.create = function(req, res) {
 
     doc.project_id = req.params.projectID;
 
-    FileDao.create(doc, function(err, doc) {
+    FileDao.create(doc, function(err, model) {
         if (!err) {
             return res.sucMsg();
         } else {

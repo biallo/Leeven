@@ -3,6 +3,7 @@
  */
 var async = require('async');
 var UserDao = require('./../dao').UserDao;
+var TeamDao = require('./../dao').TeamDao;
 
 var loginJokes = [{
         icon: 'loading',
@@ -10,13 +11,16 @@ var loginJokes = [{
     }, {
         icon: 'keyboard',
         text: '键盘撸得好，登录问题少～'
+    }, {
+        icon: 'thumbs down',
+        text: '好事做得少，登录过不了～'
     }],
     signupJokes = [{
-        icon: 'thumbs down',
-        text: '好事做得少，注册过不了～'
+        icon: 'time',
+        text: '时不我待，注册要快。'
     }, {
-        icon: 'money',
-        text: '注册就能获得给我一块钱的资格！'
+        icon: 'quote left',
+        text: '螃蟹在剝我的壳，而注册表单在填你。'
     }];
 
 /**
@@ -24,7 +28,7 @@ var loginJokes = [{
  */
 exports.index = function(req, res) {
     return res.render('index/login', {
-        layout: 'login-layout',
+        layout: 'clean-layout',
         joke: loginJokes[parseInt(Math.random() * loginJokes.length)]
     });
 }
@@ -33,9 +37,18 @@ exports.index = function(req, res) {
  * Render signup view
  */
 exports.signup = function(req, res) {
+
+    var teamID = req.params.teamID,
+        url = '';
+
+    if (teamID) {
+        url = '/' + teamID;
+    }
+
     return res.render('index/signup', {
-        layout: 'login-layout',
-        joke: signupJokes[parseInt(Math.random() * signupJokes.length)]
+        layout: 'clean-layout',
+        joke: signupJokes[parseInt(Math.random() * signupJokes.length)],
+        action: '/signup' + url
     });
 }
 
@@ -52,34 +65,63 @@ exports.create = function(req, res) {
     var errors = req.validationErrors();
 
     if (errors) {
-        return res.errMsg(errors);
+        return res.render('index/signup', {
+            layout: 'clean-layout',
+            joke: loginJokes[parseInt(Math.random() * loginJokes.length)],
+            isError: 'error',
+            msg: errors[0]
+        });
     };
 
     var doc = req.body;
+    var teamID = req.params.teamID ? req.params.teamID : '';
 
-    //验证邮箱是否已被注册
+
     async.auto({
-        'findUserByEmail': function(cb) {
+        findUserByEmail: function(cb) { //验证邮箱是否已被注册
             UserDao.findByQuery({
                 email: doc.email
             }, cb)
-        }
+        },
+        findTeamById: function(cb, results) { //验证teamID的有效性
+            if (teamID) { //如果注册的url中包含teamID
+                TeamDao.findById(teamID, cb);
+            } else {
+                cb();
+            }
+        },
+        createUser: ['findUserByEmail', 'findTeamById', function(cb, results) { //创建用户
+            if (results.findTeamById) { //团队ID有效
+                doc.teams = [teamID];
+                doc.team_now = teamID;
+            }
+            UserDao.create(doc, cb);
+        }]
     }, function(cb, results) {
-        if (results.findUserByEmail) {
-            return res.errMsg([{
-                msg: doc.email + '已被注册'
-            }]);
+
+        var errMsg = '',
+            goLogin = false;
+
+        if (results.findUserByEmail) { //邮箱已被注册
+            errMsg = doc.email + '已被注册。';
+        } else if (results.findTeamById !== undefined) { //团队ID无效
+            if (!results.findTeamById) {
+                errMsg = '团队ID无效。';
+            }
+        } else if (!results.createUser) {
+            errMsg = '注册失败，请稍后重试。';
         } else {
-            UserDao.create(doc, function(err, doc) {
-                if (!err) {
-                    return res.sucMsg();
-                } else {
-                    return res.errMsg([{
-                        msg: '创建失败，请稍后重试'
-                    }]);
-                }
-            });
+            goLogin = true;
         }
+
+        return res.render('index/signup', {
+            layout: 'clean-layout',
+            joke: signupJokes[parseInt(Math.random() * signupJokes.length)],
+            isError: 'error',
+            msg: errMsg,
+            goLogin: goLogin
+        });
+
     });
 
 }
@@ -103,29 +145,34 @@ exports.login = function(req, res) {
     UserDao.getModelByQuery({
         email: doc.email
     }, function(err, user) {
+        var errMsg = '';
         if (!user) {
-            return res.errMsg([{
-                msg: '邮箱错误'
-            }]);
+            errMsg = '邮箱错误。';
         } else if (!user.authenticate(doc.password)) {
-            return res.errMsg([{
-                msg: '密码错误'
-            }]);
+            errMsg = '密码错误。';
         } else {
             if (user.state === 0) {
-                return res.errMsg([{
-                    'msg': '账号被锁定'
-                }]);
+                errMsg = '账号被锁定';
             } else {
                 req.logIn(user, function(err) {
                     clearUser(user);
-                    if (err) { return next(err); }
-                    return res.sucMsg({
-                        team_id: req.user.team_id
-                    });
+                    if (err) {
+                        return next(err);
+                    } else {
+                        return res.redirect('/');
+                    }
                 });
             }
         }
+
+        return res.render('index/login', {
+            layout: 'clean-layout',
+            joke: loginJokes[parseInt(Math.random() * loginJokes.length)],
+            isError: 'error',
+            msg: errMsg
+        });
+
+
     });
 };
 
