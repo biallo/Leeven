@@ -59,6 +59,7 @@ exports.add = function(req, res) {
         isUserInTeam: ['getUserByEmail', 'getTeamById', function(cb, results) {
             var resUser = results.getUserByEmail,
                 resTeam = results.getTeamById;
+                
             if (resUser && resTeam) { //用户存在,且成功查询到团队信息
                 //检查该用户是否已经加入该团队
                 var teams = resUser.teams,
@@ -92,6 +93,8 @@ exports.add = function(req, res) {
                     }, cb);
                 }
 
+            }else{
+                cb();
             }
         }]
     }, function(cb, results) {
