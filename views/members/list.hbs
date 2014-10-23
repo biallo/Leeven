@@ -1,18 +1,28 @@
 <section class="page-members">
 	<div class="container">
-
-		<div class="members-header">
-			<form class="ui form form-add {{isError}}" action="/members/add">
-			  	<div class="inline field">
-				    <input type="text" name="email" placeholder="Email">
-					 <div class="ui green submit button">添加</div>
-			  	</div>
-			  	<div class="ui error message">{{msg}}</div>
-		    </form>
-          	<div class="sub">
-          		你可以通过账号（邮箱）将其他用户添加到你所在的团队中（暂无删除）。
-          	</div>
-	    </div>
+		
+		<div class="ui grid stackable members-header">
+			<div class="seven wide column">
+				<form class="ui form form-add {{isError}}" action="/members/add">
+				  	<div class="ui action input fluid">
+					    <input type="text" name="email" placeholder="Email">
+						<div class="ui green submit button">添加</div>
+				  	</div>
+				  	<div class="ui error message">{{msg}}</div>
+			    </form>
+	          	<div class="sub">
+	          		通过账号（邮箱）将其他用户添加到你所在的团队中。
+	          	</div>
+			</div>
+			<div class="nine wide column">
+				<div class="ui input fluid">
+			    	<input type="text" readonly="readonly" value="{{url}}/signup/{{user.team_now}}">
+			    </div>
+			    <div class="sub">
+					邀请新用户使用上方链接进行注册，成功后将直接加入本团队。
+	          	</div>
+			</div>
+		</div>
 
 		<div class="ui horizontal divider">
 	        <i class="circular users icon"></i>

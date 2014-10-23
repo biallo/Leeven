@@ -91,9 +91,13 @@ exports.create = function(req, res) {
             }
         },
         createUser: ['findUserByEmail', 'findTeamById', function(cb, results) { //创建用户
-            if (results.findTeamById) { //团队ID有效
-                doc.teams = [teamID];
-                doc.team_now = teamID;
+            var resTeam = results.findTeamById;
+            if (resTeam) { //团队ID有效
+                doc.teams = [{
+                    name: resTeam.name,
+                    id: resTeam._id
+                }];
+                doc.team_now = resTeam._id;
             }
             UserDao.create(doc, cb);
         }]
@@ -104,12 +108,14 @@ exports.create = function(req, res) {
 
         if (results.findUserByEmail) { //邮箱已被注册
             errMsg = doc.email + '已被注册。';
-        } else if (results.findTeamById !== undefined) { //团队ID无效
-            if (!results.findTeamById) {
-                errMsg = '团队ID无效。';
-            }
         } else if (!results.createUser) {
             errMsg = '注册失败，请稍后重试。';
+        } else if (teamID) { //有teamID参数
+            if (!results.findTeamById) { //团队ID无效
+                errMsg = '团队ID无效。';
+            } else {
+                goLogin = true;
+            }
         } else {
             goLogin = true;
         }

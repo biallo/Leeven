@@ -25,6 +25,7 @@ exports.list = function(req, res) {
             return res.render('members/list', {
                 user: req.user,
                 members: list,
+                url: req.protocol + '://' + req.headers.host,
                 nav_members: true
             });
         } else {
