@@ -23,6 +23,12 @@ module.exports = function(app, passport, mongoose) {
     app.set('views', path.join(process.common.rootPath, 'views'));
     app.set('view engine', 'hbs');
 
+    //add variables into route
+    app.use(function(req, res, next) {
+        res.locals.isproduction = (app.get('env') === 'production');
+        next();
+    });
+
     //hbs helper
     hbs.registerPartial('header', fs.readFileSync(process.common.rootPath + '/views/_header.hbs', 'utf8'));
     hbs.registerPartial('footer', fs.readFileSync(process.common.rootPath + '/views/_footer.hbs', 'utf8'));
