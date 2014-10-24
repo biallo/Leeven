@@ -2,6 +2,7 @@ var express = require('express');
 var hbs = require('hbs');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var _ = require('underscore');
 var config = require('./config/config.default.js');
 
 
