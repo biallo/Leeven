@@ -41,6 +41,14 @@ db.connect(config.DB, function(mongoose) {
     //initial routes
     require('./libs/routes.load')(app, auth);
 
+    //add variables into route
+    app.use(function(req, res, next) {
+        res.locals({
+            'isproduction': (app.get('env') === 'production')
+        });
+        next();
+    });
+    
     // catch 404 and forward to error handler
     app.use(function(req, res) {
         var err = new Error('Not Found');
