@@ -55,7 +55,9 @@
          */
         function preview() {
             var mdContent = marked(editor.session.getValue());
-            $('.preview').html(mdContent);
+            
+            $('.preview').html(mdContent)
+                .scrollTop($('.preview')[0].scrollHeight);
 
             editor.session.getUndoManager().markClean();
         }
