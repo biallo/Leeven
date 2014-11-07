@@ -1,12 +1,25 @@
 .page-files {
     margin-top: 40px;
-    .option-holder{
+    .head-holder{
+        padding: 0 10px;
     	.ui.header{
-    		color: #555;
+    		color: #777;
+            .sub{
+                margin-top: 10px;
+                line-height: 20px;
+            }
     	}
+        
     }
     .list-holder {
-        margin: 0 10px;
+        margin: 25px 10px 10px;
+        .option-holder{
+            &:after{
+                content: ' ';
+                display: block;
+                clear: both;
+            }
+        }
         .items {
             >.item {
             	position: relative;
@@ -17,7 +30,6 @@
                 border-bottom-width: 0;
                 box-shadow: 0 0 0;
                 text-align: center;
-                padding-top: .8em;
                 transition: none;
                 cursor: default;
                 &:hover{
@@ -26,6 +38,10 @@
                 	.options{
                 		display: block;
                 	}
+                }
+                >a{
+                    display: block;
+                    padding-top: .8em;
                 }
                 .icon.file {
                     font-size: 5.5em;
@@ -69,6 +85,10 @@
     .del-file {
         display: none;
         margin-top: 10px;
+    }
+    .sidebar.sidebar-view{
+        width: 800px !important;
+        margin-left: -800px !important;
     }
 }
 

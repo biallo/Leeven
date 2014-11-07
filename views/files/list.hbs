@@ -1,22 +1,26 @@
 <section class="page-files">
 	<div class="container">
-		<div class="option-holder">
-			<div class="float-left">
-				<div class="ui huge header">{{project.name}}</div>
-			</div>
-			<div class="float-right">
-				<div id="btnAddFile" class="ui green button">
-				  <i class="add icon"></i>
-				  <span class="text">新建文档</span>
-				</div>
+		<div class="head-holder">
+			<div class="ui header">
+				{{project.name}}
+				<div class="sub header">{{project.description}}</div>
 			</div>
 		</div>
+
 		<div class="ui stacked segment list-holder">
+			<div class="option-holder">
+				<div class="float-right">
+					<div id="btnAddFile" class="ui green button">
+					  <i class="add icon"></i>
+					  <span class="text">新建文档</span>
+					</div>
+				</div>
+			</div>
 		  	{{#if files}}
 				<div class="ui stackable items">
 					{{#each files}}
 				  	<div class="item">
-				  		<a href="/viewfile/{{_id}}">
+				  		<a data-fid="{{_id}}">
 					  		<i class="icon text file outline"></i>
 						    <div class="title" title="{{name}}">{{name}}</div>
 					    </a>
@@ -62,7 +66,15 @@
 	    	<div class="ui error message msg-file-form"></div>
 	  	</form>
 	</div>
-	{{!-- /.sidebar --}}
-
+	{{!-- /.sidebar-file --}}
+	
+	<div class="ui wide styled sidebar sidebar-view">
+		<a class="ui top right attached label close-sidebar">关闭</a>
+	  	<h3 class="ui header">view</h3>
+	  	<article class="ui piled segment md-file file-content"></article>
+	</div>
+	{{!-- /.sidebar-view --}}
 
 </section>
+
+<script src="/libs/marked/marked.js"></script>

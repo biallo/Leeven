@@ -26,7 +26,8 @@ exports.list = function(req, res) {
                         files: list,
                         project: {
                             _id: req.params.projectID,
-                            name: project.name
+                            name: project.name,
+                            description: project.description
                         }
                     });
                 } else {
@@ -43,7 +44,6 @@ exports.list = function(req, res) {
             });
         }
     });
-
 };
 
 /**
@@ -129,13 +129,13 @@ exports.del = function(req, res) {
 exports.view = function(req, res) {
     FileDao.findById(req.params.fileID, function(err, file) {
         if (file) {
-            return res.render('files/view', {
-                user: req.user,
-                file: file
+            return res.sucMsg({
+                name: file.name,
+                content: file.content
             });
         } else {
-            return res.render('404', {
-                layout: 'error-layout'
+            return res.errMsg({
+                msg: '获取文档失败，请稍后重试。'
             });
         }
 
@@ -159,7 +159,6 @@ exports.fileContent = function(req, res) {
             });
         }
     });
-
 };
 
 /**

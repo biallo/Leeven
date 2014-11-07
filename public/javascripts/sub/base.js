@@ -101,4 +101,11 @@
         $('.ui.sidebar form')[0].reset();
     });
 
+    /**
+     * 返回
+     */
+    $('.go-back').on('click', function(){
+        history.go(-1);
+    });
+
 })(window.jQuery);

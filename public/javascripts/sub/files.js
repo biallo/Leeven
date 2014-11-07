@@ -1,6 +1,40 @@
 (function($) {
 	if($('.page-files').length) {
 
+        /**
+         * 查看文章
+         */
+        $('.item').on('click', '>a', function(){
+            var fid = $(this).data('fid');
+
+            $.myAjax({
+                type: 'get',
+                url: '/viewfile/' + fid,
+                success: function(data) {
+                    if (data.status) {
+                        var content = '';
+
+                        $('.sidebar-view .header').text(data.result.name);
+
+                        if (data.result.content) {
+                            content = marked(data.result.content);
+                        } else {
+                            content = '<span style="color: #bbb;">这个家伙很懒，什么都没有写……</span>';
+                        }
+
+                        $('.sidebar-view .file-content').html(content);
+
+                        $('.sidebar-view')
+                            .sidebar({
+                                overlay: true
+                            })
+                            .sidebar('show');
+                    }
+                }
+            });
+
+        });
+
 		/**
          * “新增项目”按钮的点击事件
          */
@@ -39,7 +73,6 @@
                     overlay: true
                 })
                 .sidebar('show');
-
         });
 
 
