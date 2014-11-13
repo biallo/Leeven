@@ -16,13 +16,15 @@
 
                         $('.sidebar-view .header').text(data.result.name);
 
+                        $('.sidebar-view .btn-editfile').attr('href', '/editfile/' + fid);
+
                         if (data.result.content) {
                             content = marked(data.result.content);
                         } else {
                             content = '<span style="color: #bbb;">这个家伙很懒，什么都没有写……</span>';
                         }
 
-                        $('.sidebar-view .file-content').html(content);
+                        $('.sidebar-view .md-file').html(content);
 
                         $('.sidebar-view')
                             .sidebar({

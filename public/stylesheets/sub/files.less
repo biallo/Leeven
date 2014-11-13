@@ -87,8 +87,38 @@
         margin-top: 10px;
     }
     .sidebar.sidebar-view{
-        width: 800px !important;
-        margin-left: -800px !important;
+        width: 850px !important;
+        margin-left: -850px !important;
+        padding: 0 !important;
+    }
+    .sidebar-view{
+        .file-holder{
+            position: relative;
+            height: 100%;
+            padding-top: 44px;
+            .file-head{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 44px;
+                padding: 6px 1em 0;
+                background: #444;
+                border-bottom: 1px solid #eee;
+                h3.header{
+                    float: left;
+                    color: #fff;
+                }
+                .file-options{
+                    float: right;
+                }
+            }
+            .file-content{
+                height: 100%;
+                overflow-y: auto;
+                padding: 1em;
+            }
+        }
     }
 }
 

@@ -7,7 +7,7 @@
 			</div>
 		</div>
 
-		<div class="ui stacked segment list-holder">
+		<div class="ui piled segment list-holder">
 			<div class="option-holder">
 				<div class="float-right">
 					<div id="btnAddFile" class="ui green button">
@@ -69,9 +69,21 @@
 	{{!-- /.sidebar-file --}}
 	
 	<div class="ui wide styled sidebar sidebar-view">
-		<a class="ui top right attached label close-sidebar">关闭</a>
+		<div class="file-holder">
+			<div class="file-head">
+				<h3 class="ui header"></h3>
+				<div class="file-options">
+					<a class="ui left attached button tiny blue btn-editfile">编写</a>
+					<a class="ui right attached button tiny close-sidebar">关闭</a>
+				</div>
+			</div>
+			<div class="file-content">
+				<article class="md-file"></article>
+			</div>
+		</div>
+		{{!-- <a class="ui top right attached label close-sidebar">关闭</a>
 	  	<h3 class="ui header">view</h3>
-	  	<article class="ui piled segment md-file file-content"></article>
+	  	<article class="ui stacked segment md-file file-content"></article> --}}
 	</div>
 	{{!-- /.sidebar-view --}}
 
