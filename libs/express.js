@@ -12,8 +12,10 @@ var expressValidator = require('express-validator');
 module.exports = function(app, passport, mongoose) {
 
     app.use(logger('dev'));
+    app.use(bodyParser.urlencoded({
+        extended: false
+    }));
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded());
     app.use(expressValidator());
     app.use(require('less-middleware')(path.join(process.common.rootPath, 'public')));
     app.use(cookieParser());
@@ -37,6 +39,8 @@ module.exports = function(app, passport, mongoose) {
     //express/mongo session storage
     app.use(session({
         secret: 'leeven',
+        secret: 'stratum-proxy',
+        resave: false,
         maxAge: new Date(Date.now() + (6000 * 60 * 24)), // 1 day
         store: new MongoStore({
             db: mongoose.connection.db
