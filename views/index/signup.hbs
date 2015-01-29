@@ -69,3 +69,9 @@
     </h4>
     {{/unless}}
 </section>
+
+{{#if isproduction}}
+    <script src="/javascripts/pro/signup.min.js"></script>
+{{else}}
+    <script src="/javascripts/sub/signup.js"></script>
+{{/if}}

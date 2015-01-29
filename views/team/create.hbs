@@ -25,3 +25,9 @@
         <div class="ui error message">{{msg}}</div>
     </form>
 </section>
+
+{{#if isproduction}}
+    <script src="/javascripts/pro/team.min.js"></script>
+{{else}}
+    <script src="/javascripts/sub/team.js"></script>
+{{/if}}

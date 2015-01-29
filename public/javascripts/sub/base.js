@@ -52,7 +52,7 @@
         return html;
     };
 
-    
+
     /**
      * tip-modal
      * option : String || Object
@@ -88,24 +88,26 @@
 
     }
 
-    /**
-     * Initializing dropdown
-     */
-    $('.ui.dropdown').dropdown();
+    $(document).ready(function() {
+        /**
+         * Initializing dropdown
+         */
+        $('.ui.dropdown').dropdown();
 
-    /**
-     * 关闭sidebar（通用）
-     */
-    $('.close-sidebar').on('click', function() {
-        $('.ui.sidebar').sidebar('hide');
-        $('.ui.sidebar form')[0].reset();
-    });
+        /**
+         * 关闭sidebar（通用）
+         */
+        $('.close-sidebar').on('click', function() {
+            $('.ui.sidebar').sidebar('hide');
+            $('.ui.sidebar form')[0].reset();
+        });
 
-    /**
-     * 返回
-     */
-    $('.go-back').on('click', function(){
-        history.go(-1);
+        /**
+         * 返回
+         */
+        $('.go-back').on('click', function() {
+            history.go(-1);
+        });
     });
 
 })(window.jQuery);

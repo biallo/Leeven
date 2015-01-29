@@ -43,3 +43,9 @@
 
 	</div>
 </section>
+
+{{#if isproduction}}
+    <script src="/javascripts/pro/members.min.js"></script>
+{{else}}
+    <script src="/javascripts/sub/members.js"></script>
+{{/if}}

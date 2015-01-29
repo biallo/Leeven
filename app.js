@@ -5,8 +5,6 @@ var passport = require('passport');
 var _ = require('underscore');
 var config = require('./config/config.default.js');
 
-
-
 //production environmentr
 if (process.env.NODE_ENV && process.env.NODE_ENV == 'production') {
     console.log('[Environment]   ' + process.env.NODE_ENV);

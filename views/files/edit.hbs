@@ -22,3 +22,8 @@
 
 <script src="/libs/ace/ace.js"></script>
 <script src="/libs/marked/marked.js"></script>
+{{#if isproduction}}
+    <script src="/javascripts/pro/edit-file.min.js"></script>
+{{else}}
+    <script src="/javascripts/sub/edit-file.js"></script>
+{{/if}}

@@ -34,7 +34,6 @@ module.exports = function(app, passport, mongoose) {
     //hbs helper
     hbs.registerPartial('header', fs.readFileSync(process.common.rootPath + '/views/_header.hbs', 'utf8'));
     hbs.registerPartial('footer', fs.readFileSync(process.common.rootPath + '/views/_footer.hbs', 'utf8'));
-    hbs.registerPartial('script', fs.readFileSync(process.common.rootPath + '/views/_script.hbs', 'utf8'));
 
     //express/mongo session storage
     app.use(session({

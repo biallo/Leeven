@@ -7,9 +7,15 @@
 		<title>Leeven</title>
 		<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 		{{#if isproduction}}
-	    <link rel='stylesheet' href='/stylesheets/style.min.css' />
+		    <link rel='stylesheet' href='/stylesheets/style.min.css' />
+		    <script src="/javascripts/libs.min.js"></script>
+			<script src="/javascripts/pro/base.min.js"></script>
 	    {{else}}
-	    <link rel='stylesheet' href='/stylesheets/style.css' />
+	    	<link rel='stylesheet' href='/stylesheets/style.css' />
+	    	<script src="/libs/jquery/jquery-1.11.1.js"></script>
+			<script src="/libs/semantic/javascript/semantic.js"></script>
+			<script src="/libs/nprogress/nprogress.js"></script>
+			<script src="/javascripts/sub/base.js"></script>
 	    {{/if}}
 	</head>
 	<body class="login-layout">
@@ -20,7 +26,6 @@
     		<div class="content"></div>
 	    </div>
 		{{!-- /.tip-modal --}}
-		
-		{{> script }}
+
 	</body>
 </html>

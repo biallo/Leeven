@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-    
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
@@ -42,9 +42,18 @@ module.exports = function(grunt) {
                     footer: '\n/*! <%= pkg.name %> 最后修改于： <%= grunt.template.today("yyyy-mm-dd") %> */'
                 },
                 files: {
-                    'public/javascripts/libs.min.js': ['public/libs/jquery/jquery-1.11.1.js', 'public/libs/semantic/javascript/semantic.js', 'public/libs/nprogress/nprogress.js'],
-                    'public/javascripts/script.min.js': ['public/javascripts/sub/base.js', 'public/javascripts/sub/login.js', 'public/javascripts/sub/signup.js', 'public/javascripts/sub/projects.js', 'public/javascripts/sub/files.js', 'public/javascripts/sub/edit-file.js', 'public/javascripts/sub/team.js', 'public/javascripts/sub/members.js']
+                    'public/javascripts/libs.min.js': ['public/libs/jquery/jquery-1.11.1.js', 'public/libs/semantic/javascript/semantic.js', 'public/libs/nprogress/nprogress.js']
                 }
+            },
+            build: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/javascripts/sub/',
+                    src: '*.js',
+                    dest: 'public/javascripts/pro/',
+                    ext: '.min.js',
+                    extDot: 'first'
+                }]
             }
         },
         concurrent: {

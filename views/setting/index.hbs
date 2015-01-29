@@ -12,7 +12,23 @@
 		  	</a>
 		</div>
 		<div class="ui blue segment">
-			基本信息
+			<form id="basicForm" class="ui form {{isError}}" action="/setting/basic" method="post">
+				<input type="hidden" name="userID" value="{{user._id}}">
+				<div class="two fields">
+					<div class="field">
+						<label>名称</label>
+						<input type="text" name="name" value="{{user.name}}" required >
+					</div>
+				</div>
+				<div class="ui button submit orange">修改</div>
+				<div class="ui error message">{{msg}}</div>
+			</form>
       	</div>
 	</div>
 </section>
+
+{{#if isproduction}}
+    <script src="/javascripts/pro/setting.min.js"></script>
+{{else}}
+    <script src="/javascripts/sub/setting.js"></script>
+{{/if}}

@@ -90,3 +90,8 @@
 </section>
 
 <script src="/libs/marked/marked.js"></script>
+{{#if isproduction}}
+    <script src="/javascripts/pro/files.min.js"></script>
+{{else}}
+    <script src="/javascripts/sub/files.js"></script>
+{{/if}}
