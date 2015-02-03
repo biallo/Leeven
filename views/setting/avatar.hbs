@@ -1,3 +1,9 @@
+{{#if isproduction}}
+    <link rel='stylesheet' href='/libs/dropzone/dropzone.min.css' />
+{{else}}
+	<link rel='stylesheet' href='/libs/dropzone/dropzone.css' />
+{{/if}}
+
 <section class="page-setting">
 	<div class="container">
 		<div class="ui top attached tabular menu">
@@ -12,13 +18,18 @@
 		  	</a>
 		</div>
 		<div class="ui green segment">
-			修改头像
+			<form action="/setting/avatar" method="post" enctype="multipart/form-data" class="dropzone" id="avatarForm">
+				<input type="hidden" name="_id" value="{{user._id}}">
+				<input type="hidden" name="name" value="{{user.avatar}}">
+			</form>
       	</div>
 	</div>
 </section>
 
 {{#if isproduction}}
+    <script src="/libs/dropzone/dropzone.min.js"></script>
     <script src="/javascripts/pro/setting.min.js"></script>
 {{else}}
+	<script src="/libs/dropzone/dropzone.js"></script>
     <script src="/javascripts/sub/setting.js"></script>
 {{/if}}

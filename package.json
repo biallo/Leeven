@@ -26,7 +26,8 @@
         "async": "0.9.0",
         "express-session": "1.8.1",
         "connect-mongo": "0.4.1",
-        "marked": "0.3.2"
+        "marked": "0.3.2",
+        "multer": "0.1.6"
     },
     "devDependencies": {
         "supertest": "latest",

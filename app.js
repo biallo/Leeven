@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var _ = require('underscore');
 var config = require('./config/config.default.js');
+var path = require('path');
 
 //production environmentr
 if (process.env.NODE_ENV && process.env.NODE_ENV == 'production') {
@@ -16,7 +17,8 @@ if (process.env.NODE_ENV && process.env.NODE_ENV == 'production') {
 //initial `common` into process
 process.common = {
     rootPath: __dirname,
-    config: config
+    config: config,
+    avatarPath: path.join(process.cwd(), 'public/images', 'avatar')
 };
 
 //add utils into `process.common`

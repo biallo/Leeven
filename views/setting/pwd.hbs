@@ -12,7 +12,32 @@
 		  	</a>
 		</div>
 		<div class="ui orange segment">
-			修改密码
+			{{#if success}}
+			<div class="ui success message">{{success}}</div>
+			{{/if}}
+			<form id="pwdForm" class="ui form {{isError}}" action="/setting/pwd" method="post">
+				<input type="hidden" name="_id" value="{{user._id}}">
+				<div class="two fields">
+					<div class="field">
+						<label>当前密码</label>
+						<input type="password" name="pwdnow" required >
+					</div>
+				</div>
+				<div class="two fields">
+					<div class="field">
+						<label>新密码</label>
+						<input type="password" name="password" required >
+					</div>
+				</div>
+				<div class="two fields">
+					<div class="field">
+						<label>重复新密码</label>
+						<input type="password" name="confirmPassword" required >
+					</div>
+				</div>
+				<div class="ui button submit orange">修改</div>
+				<div class="ui error message">{{msg}}</div>
+			</form>
       	</div>
 	</div>
 </section>

@@ -8,6 +8,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var expressValidator = require('express-validator');
+var multer = require('multer');
 
 module.exports = function(app, passport, mongoose) {
 
@@ -20,6 +21,8 @@ module.exports = function(app, passport, mongoose) {
     app.use(require('less-middleware')(path.join(process.common.rootPath, 'public')));
     app.use(cookieParser());
     app.use(express.static(path.join(process.common.rootPath, 'public')));
+
+    app.use(multer({ dest: './uploads/'}));
 
     // view engine setup
     app.set('views', path.join(process.common.rootPath, 'views'));
