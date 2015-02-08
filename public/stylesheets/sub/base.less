@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 html, body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     height: 100%
 }
 body {
@@ -42,8 +42,7 @@ a {
             -webkit-animation-duration: .1s;
             -moz-animation-duration: .1s;
             animation-duration: .1s;
-           
-            &:hover{
+            &:hover {
                 -webkit-animation-name: tada;
                 -moz-animation-name: tada;
                 animation-name: tada;
@@ -68,25 +67,28 @@ a {
         clear: both;
     }
 }
-
-.sidebar{
+.sidebar {
     max-width: 100% !important;
 }
-
+.divider-text {
+    background: #fff;
+    position: relative;
+    z-index: 4;
+    padding: 0 5px;
+}
 .md-file {
     word-wrap: break-word;
     line-height: 1.2em;
     color: #333;
-
     h1, h2, h3, h4, h5, h6 {
         position: relative;
         margin-top: 1em 0;
         font-weight: bold;
         line-height: 1.4;
     }
-    ul, ol{
+    ul, ol {
         padding-left: 2em;
-        ul, ol{
+        ul, ol {
             margin-top: 0;
             margin-bottom: 0;
         }
@@ -94,7 +96,7 @@ a {
     li > p {
         margin-top: 1em;
     }
-    dl{
+    dl {
         padding: 0;
         dt {
             padding: 0;
@@ -102,55 +104,51 @@ a {
             font-size: 1em;
             font-weight: bold;
         }
-        dd{
+        dd {
             padding: 0 16px;
             margin-bottom: 1em;
         }
     }
-
-    blockquote{
+    blockquote {
         padding: 0 1em;
         color: #777;
-        border-left:4px solid #ddd;
-        &:first-child{
+        border-left: 4px solid #ddd;
+        &:first-child {
             margin-top: 0;
         }
-        &:last-child{
+        &:last-child {
             margin-bottom: 0;
         }
     }
-    
-    table{
+    table {
         display: block;
-        width: 100% ;
+        width: 100%;
         overflow: auto;
         word-break: normal;
         word-break: keep-all;
         border-collapse: collapse;
-        th{
+        th {
             font-weight: bold;
         }
-        tr{
+        tr {
             border: 1px solid #ccc;
         }
-        th, td{
+        th, td {
             padding: .4em .8em;
             border: 1px solid #ddd;
         }
     }
-
-    img{
+    img {
         max-width: 100%;
     }
-
-    pre{
+    pre {
         padding: 18px;
         overflow: auto;
         font-size: 100%;
         line-height: 1.6;
         background-color: #f7f7f7;
         border-radius: 4px;
-        >code{
+        >code {
             padding: 0;
             margin: 0;
             word-break: break-word;
@@ -158,7 +156,7 @@ a {
             background: transparent;
             border: 0;
         }
-        code, tt{
+        code, tt {
             display: inline;
             max-width: initial;
             padding: 0;
@@ -167,10 +165,9 @@ a {
             word-wrap: break-word;
             background-color: transparent;
             border: 0;
-            &:before, &:after{
+            &:before, &:after {
                 content: normal;
             }
         }
     }
-
 }

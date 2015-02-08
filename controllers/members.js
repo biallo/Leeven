@@ -22,11 +22,24 @@ exports.list = function(req, res) {
         'createdTime': '-1'
     }, function(err, list) {
         if (!err) {
-            return res.render('members/list', {
-                user: req.user,
-                members: list,
-                url: req.protocol + '://' + req.headers.host,
-                nav_members: true
+            TeamDao.findById({
+                _id: req.user.team_now
+            }, function(err, team) {
+                if (!err) {
+                    return res.render('members/list', {
+                        user: req.user,
+                        team: team,
+                        members: list,
+                        url: req.protocol + '://' + req.headers.host,
+                        nav_members: true
+                    });
+                } else {
+                    return res.render('500', {
+                        layout: 'error-layout',
+                        message: err.message,
+                        error: err
+                    });
+                }
             });
         } else {
             return res.render('500', {
@@ -59,7 +72,7 @@ exports.add = function(req, res) {
         isUserInTeam: ['getUserByEmail', 'getTeamById', function(cb, results) {
             var resUser = results.getUserByEmail,
                 resTeam = results.getTeamById;
-                
+
             if (resUser && resTeam) { //用户存在,且成功查询到团队信息
                 //检查该用户是否已经加入该团队
                 var teams = resUser.teams,
@@ -93,7 +106,7 @@ exports.add = function(req, res) {
                     }, cb);
                 }
 
-            }else{
+            } else {
                 cb();
             }
         }]
@@ -109,5 +122,5 @@ exports.add = function(req, res) {
 
 
 
-    
+
 };
