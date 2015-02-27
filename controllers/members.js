@@ -4,42 +4,47 @@
 var async = require('async');
 var UserDao = require('./../dao').UserDao;
 var TeamDao = require('./../dao').TeamDao;
+var _ = require('underscore');
 
 /**
  * Render index view
  */
 exports.list = function(req, res) {
 
-    UserDao.getList({
-        criteria: {
-            teams: {
-                $elemMatch: {
-                    id: req.user.team_now
+    async.auto({
+        getUsers: function(cb) {
+            UserDao.getList({
+                criteria: {
+                    teams: {
+                        $elemMatch: {
+                            id: req.user.team_now
+                        }
+                    }
                 }
-            }
-        }
-    }, {
-        'createdTime': '-1'
-    }, function(err, list) {
-        if (!err) {
+            }, {
+                'createdTime': '-1'
+            }, cb);
+        },
+        getTeam: function(cb) {
             TeamDao.findById({
                 _id: req.user.team_now
-            }, function(err, team) {
-                if (!err) {
-                    return res.render('members/list', {
-                        user: req.user,
-                        team: team,
-                        members: list,
-                        url: req.protocol + '://' + req.headers.host,
-                        nav_members: true
-                    });
-                } else {
-                    return res.render('500', {
-                        layout: 'error-layout',
-                        message: err.message,
-                        error: err
-                    });
+            }, cb);
+        }
+    }, function(cb, results) {
+        var users = results.getUsers,
+            team = results.getTeam;
+        if (users && team) {
+            _.each(users, function(item, index) {
+                if (String(item._id) === String(team.user_id)) {
+                    item.owner = true;
                 }
+            });
+            return res.render('members/list', {
+                user: req.user,
+                team: team,
+                members: users,
+                url: req.protocol + '://' + req.headers.host,
+                nav_members: true
             });
         } else {
             return res.render('500', {
